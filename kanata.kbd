@@ -1,0 +1,32 @@
+;; this goes in ~/.config/kanata/
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  spc
+  h f j k l
+  u i
+)
+
+(defalias
+  escctrl (tap-hold 100 100 esc lctl)
+  navhold (tap-hold 200 200 spc (layer-toggle nav))
+  fshft (tap-hold-release 1 200 f lsft)
+  jshft (tap-hold-release 1 200 j rsft)
+)
+
+(deflayer base
+  @escctrl
+  @navhold
+  h @fshft @jshft k l
+  u i
+)
+
+(deflayer nav
+  _
+  _
+  left _ down up right
+  pgdn pgup
+)
