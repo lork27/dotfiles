@@ -114,10 +114,13 @@ fi
 
 alias src="source ~/.zshrc"
 alias vrc="$EDITOR ~/.zshrc"
-alias btw="neofetch"
+alias krc="sudo launchctl kickstart -k system/com.kanata.remap"
+alias grc="$EDITOR ~/.config/ghostty/config"
+alias btw="neofetch 2> /dev/null || fastfetch"
 alias search="history | grep"
 alias trc="tmux source ~/.tmux.conf"
 alias vtrc="$EDITOR ~/.tmux.conf"
+alias ktrc="$EDITOR ~/.config/kanata/kanata.kbd"
 alias myip="dig +short txt ch whoami.cloudflare @1.0.0.1"
 
 
@@ -150,3 +153,4 @@ export NVM_DIR="$HOME/.nvm"
 export GOROOT=$HOME/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
+eval "$(zoxide init zsh)"
