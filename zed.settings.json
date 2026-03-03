@@ -1,0 +1,30 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "icon_theme": "Material Icon Theme",
+  "disable_ai": true,
+  "calls": {
+    "mute_on_join": true,
+  },
+  "tab_bar": {
+    "show": false,
+  },
+  "features": {},
+  "base_keymap": "VSCode",
+  "theme": "VSCode Dark Polished",
+  "vim_mode": true,
+  "ui_font_size": 18,
+  "buffer_font_size": 18,
+  "buffer_font_family": "Intel One Mono",
+  "buffer_font_weight": 900,
+  "buffer_line_height": "standard",
+  "ui_font_family": "Intel One Mono",
+  "ui_font_weight": 900,
+}
+
