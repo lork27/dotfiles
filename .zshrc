@@ -1,6 +1,16 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+if [[ "${TERM:-}" == xterm-ghostty ]] && ! infocmp -x xterm-ghostty >/dev/null 2>&1; then
+  export TERM=xterm-256color
+fi
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -74,7 +84,9 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+if [[ -r "$ZSH/oh-my-zsh.sh" ]]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
 
 # User configuration
 
@@ -90,11 +102,13 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='nvim'
 # fi
 #
-if command -v nvim &> /dev/null; then
+if command -v nvim >/dev/null 2>&1; then
   export EDITOR='nvim'
   alias vim='nvim'
-else
+elif command -v vim >/dev/null 2>&1; then
   export EDITOR='vim'
+elif command -v vi >/dev/null 2>&1; then
+  export EDITOR='vi'
 fi
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -114,43 +128,49 @@ fi
 
 alias src="source ~/.zshrc"
 alias vrc="$EDITOR ~/.zshrc"
-alias krc="sudo launchctl kickstart -k system/com.kanata.remap"
-alias grc="$EDITOR ~/.config/ghostty/config"
-alias btw="neofetch 2> /dev/null || fastfetch"
 alias search="history | grep"
 alias trc="tmux source ~/.tmux.conf"
 alias vtrc="$EDITOR ~/.tmux.conf"
-alias ktrc="$EDITOR ~/.config/kanata/kanata.kbd"
 alias myip="dig +short txt ch whoami.cloudflare @1.0.0.1"
 
-
-#wsl-only-aliases
-if [[ "$(uname -r)" == *"WSL"* ]]; then
-  echo "We're on Windows (WSL)"
-  alias gohome="cd /mnt/e/lorkshit_v2"
-  export WHOME='/mnt/e/lorkshit_v2'
-else
-  echo "We're not on Windows (WSL)"
+if [[ "$OSTYPE" == darwin* ]] && command -v launchctl >/dev/null 2>&1; then
+  alias krc="sudo launchctl kickstart -k system/com.kanata.remap"
 fi
 
-# if [[ "$(uname -r)" == *"WSL"* ]]; then
-#   echo "We're on Windows (WSL)"
-# else
-#   echo "We're not on Windows (WSL)"
-# fi
-# pnpm
-export PNPM_HOME="/home/lork/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+if [[ -e "$HOME/.config/kanata/kanata.kbd" ]]; then
+  alias ktrc="$EDITOR ~/.config/kanata/kanata.kbd"
+fi
+
+if [[ -e "$HOME/.config/ghostty/config" ]]; then
+  alias grc="$EDITOR ~/.config/ghostty/config"
+fi
+
+if command -v fastfetch >/dev/null 2>&1; then
+  alias btw="fastfetch"
+elif command -v neofetch >/dev/null 2>&1; then
+  alias btw="neofetch 2> /dev/null"
+fi
+
+case "$(uname -r)" in
+  *[Mm]icrosoft*|*WSL*)
+    export WHOME="${WHOME:-$HOME}"
+    alias gohome='cd "$WHOME"'
+    ;;
 esac
-# pnpm end
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export GOROOT=$HOME/go
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
-eval "$(zoxide init zsh)"
+export GOPATH="${GOPATH:-$HOME/go}"
+export PATH="$GOPATH/bin:$HOME/.local/bin:$PATH"
+if [[ -n "${GOROOT:-}" && -d "$GOROOT/bin" ]]; then
+  export PATH="$GOROOT/bin:$PATH"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+# opencode
+export PATH=/home/lork/.opencode/bin:$PATH
