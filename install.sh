@@ -206,6 +206,55 @@ install_packages() {
   esac
 }
 
+install_neru_upstream() {
+  local installer
+
+  installer="$(mktemp "${TMPDIR:-/tmp}/neru-install.XXXXXX")"
+  info "Installing Neru from its upstream installer"
+
+  if ! curl -fsSL https://raw.githubusercontent.com/y3owk1n/neru/main/scripts/install.sh -o "$installer"; then
+    rm -f "$installer"
+    die "could not download the Neru installer"
+  fi
+
+  if ! bash "$installer" -y; then
+    rm -f "$installer"
+    die "could not install Neru"
+  fi
+  rm -f "$installer"
+}
+
+install_neru() {
+  if [[ "$IS_WSL" == true ]]; then
+    info "Skipping Neru inside WSL2; it needs a display server"
+    return 0
+  fi
+
+  case "$PACKAGE_MANAGER" in
+    brew)
+      info "Installing Neru from the Homebrew tap"
+      brew install --cask y3owk1n/tap/neru
+      ;;
+    apt)
+      info "Installing Neru runtime dependencies"
+      run_privileged apt-get install -y \
+        libcairo2-dev libwayland-dev libx11-dev libxtst-dev libxrandr-dev \
+        libxrender-dev libxext-dev libxfixes-dev libxkbcommon-dev libei-dev \
+        liboeffis-dev libfontconfig-dev libtesseract-dev tesseract-ocr-eng \
+        libpipewire-0.3-dev wayland-protocols fonts-dejavu-core
+      install_neru_upstream
+      ;;
+    pacman)
+      info "Installing Neru runtime dependencies"
+      run_privileged pacman -S --needed --noconfirm \
+        cairo wayland libx11 libxtst libxrandr libxrender libxext libxfixes \
+        libxkbcommon libei fontconfig tesseract tesseract-data-eng libpipewire \
+        wayland-protocols ttf-dejavu
+      install_neru_upstream
+      ;;
+  esac
+}
+
 install_ghostty_terminfo() {
   local infocmp_command=infocmp
   local tic_command=tic
@@ -380,6 +429,7 @@ link_dotfiles() {
     info "Skipping native GUI configuration links inside WSL2"
   else
     link_file zed.settings.json .config/zed/settings.json
+    link_file neru.toml .config/neru/config.toml
   fi
 
   if [[ "$PACKAGE_MANAGER" == brew ]]; then
@@ -407,6 +457,7 @@ main() {
   [[ "$IS_WSL" == true ]] && info "Detected WSL2"
 
   install_packages
+  install_neru
   install_ghostty_terminfo
   install_oh_my_zsh
   install_nvm

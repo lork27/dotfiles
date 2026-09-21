@@ -56,6 +56,7 @@ The script installs and configures:
 - zoxide
 - Neovim
 - Fastfetch
+- Neru (keyboard-driven mouse control)
 - `dig`
 - Ghostty terminfo for SSH sessions
 - NVM
@@ -82,14 +83,36 @@ All systems receive these links:
 - `.tmux.conf` to `~/.tmux.conf`
 
 Native Linux and macOS also link `zed.settings.json` to
-`~/.config/zed/settings.json`. macOS additionally links `kanata.kbd` to
-`~/.config/kanata/kanata.kbd`.
+`~/.config/zed/settings.json` and `neru.toml` to `~/.config/neru/config.toml`.
+macOS additionally links `kanata.kbd` to `~/.config/kanata/kanata.kbd`.
 
-WSL2 skips Zed and Kanata links because those applications normally run on the
-Windows host. tmux clipboard copying uses `clip.exe` inside WSL2, `pbcopy` on
-macOS, and `wl-copy` or `xclip` when available on native Linux.
+WSL2 skips the Zed, Kanata, and Neru links because those applications normally
+run on the Windows host. tmux clipboard copying uses `clip.exe` inside WSL2,
+`pbcopy` on macOS, and `wl-copy` or `xclip` when available on native Linux.
 
-Zed, Ghostty, and Kanata themselves are not installed automatically.
+Zed, Ghostty, and Kanata themselves are not installed automatically. Neru is:
+on macOS it is installed from the `y3owk1n/tap` Homebrew cask, and on Linux the
+installer downloads the release build from the upstream project after adding
+the required runtime libraries.
+
+## Neru
+
+Neru is a keyboard-driven mouse controller (hints, grids, and vim keys). The
+installer links `neru.toml` to `~/.config/neru/config.toml` and, on Linux,
+registers a login service that starts the daemon at every session.
+
+After the install:
+
+- macOS: grant Accessibility (and Input Monitoring, for OCR hints) in
+  System Settings › Privacy & Security, then start the daemon with
+  `neru launch` or register it for login with `neru services install`.
+- Linux: the daemon starts at login automatically. On Wayland, log out and back
+  in once so the `input` group membership takes effect.
+
+The default hotkeys are `Super+Shift+Space` (hints), `Super+Shift+G` (grid),
+`Super+Shift+C` (recursive grid), `Super+Shift+B` (bisect), and
+`Super+Shift+S` (scroll). `Super` is the Command key on macOS and the Super key
+on Linux.
 
 ## Ghostty And SSH
 

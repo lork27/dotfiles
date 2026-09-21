@@ -1,0 +1,18 @@
+# Neru — keyboard-driven mouse control (hints, grids, vim keys).
+# Docs: https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md
+#
+# Only non-default options are set here; everything else keeps Neru's
+# built-in defaults. `Super` is the Command key on macOS and the Super key on
+# Linux, so this file works on both without colliding with terminal shortcuts
+# (Ctrl+Shift+C copy, Ctrl+Shift+V paste, ...).
+
+[hotkeys]
+"Super+Shift+Space" = "hints"
+"Super+Shift+G" = "grid"
+"Super+Shift+C" = "recursive_grid"
+"Super+Shift+B" = "bisect"
+"Super+Shift+S" = "scroll"
+
+[hints.hotkeys]
+# Click on select, Vimium style.
+"Return" = "action left_click"
