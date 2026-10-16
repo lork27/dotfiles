@@ -174,3 +174,5 @@ fi
 
 # opencode
 export PATH=/home/lork/.opencode/bin:$PATH
+
+export PATH="$HOME/bin:$PATH"
