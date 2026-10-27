@@ -1,0 +1,27 @@
+onboarding = false
+
+[keys]
+# Ported from ~/.tmux.conf. tmux used bare h/j/k/l/x/m/n (no prefix), but herdr
+# disables plain-letter direct bindings because they intercept typing.
+# ctrl+ chords are the closest equivalent: direct (no prefix), vim-motion layout.
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
+
+# tmux: bind m split-window -h / bind n split-window -v
+split_horizontal = "ctrl+m"
+split_vertical = "ctrl+n"
+
+# tmux: bind-key x kill-pane (no confirm dialog)
+close_pane = "ctrl+x"
+
+# tmux: bind -r H/J/K/L resize-pane (10 cells)
+resize_pane_left = "ctrl+shift+h"
+resize_pane_down = "ctrl+shift+j"
+resize_pane_up = "ctrl+shift+k"
+resize_pane_right = "ctrl+shift+l"
+
+# tmux: set -g mouse on — herdr captures mouse by default (mouse_capture = true)
+# tmux: copy-mode-vi + pbcopy — herdr has edit_scrollback (prefix+e) and
+# copy_on_select = true built in; nothing to configure.

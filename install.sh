@@ -430,6 +430,7 @@ link_dotfiles() {
   else
     link_file zed.settings.json .config/zed/settings.json
     link_file neru.toml .config/neru/config.toml
+    link_file herdr.toml .config/herdr/config.toml
   fi
 
   if [[ "$PACKAGE_MANAGER" == brew ]]; then

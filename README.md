@@ -83,10 +83,11 @@ All systems receive these links:
 - `.tmux.conf` to `~/.tmux.conf`
 
 Native Linux and macOS also link `zed.settings.json` to
-`~/.config/zed/settings.json` and `neru.toml` to `~/.config/neru/config.toml`.
+`~/.config/zed/settings.json`, `neru.toml` to `~/.config/neru/config.toml`, and
+`herdr.toml` to `~/.config/herdr/config.toml`.
 macOS additionally links `kanata.kbd` to `~/.config/kanata/kanata.kbd`.
 
-WSL2 skips the Zed, Kanata, and Neru links because those applications normally
+WSL2 skips the Zed, Kanata, Neru, and Herdr links because those applications normally
 run on the Windows host. tmux clipboard copying uses `clip.exe` inside WSL2,
 `pbcopy` on macOS, and `wl-copy` or `xclip` when available on native Linux.
 
