@@ -1,5 +1,8 @@
 
 (defcfg
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+  )
   process-unmapped-keys (all-except
     f13 f14 f15 f16 f17 f18 f19 f20
     brdn brup bldn blup
