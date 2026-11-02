@@ -1,4 +1,6 @@
 (defcfg
+  process-unmapped-keys yes
+  tap-hold-require-prior-idle 150
   macos-dev-names-include (
     "Keychron K2"
     "Apple Internal Keyboard / Trackpad"
