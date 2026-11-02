@@ -19,8 +19,14 @@
   escctrl (tap-hold 100 100 esc lctl)
   navhold (tap-hold-release 200 200 spc (layer-toggle nav))
   fnhold (multi fn (layer-while-held fnrow))
-  fshft (tap-hold-order 1 200 f lsft)
-  jshft (tap-hold-order 1 200 j rsft)
+  fshft (tap-hold-tap-keys 200 200 f lsft (
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    1 2 3 4 5 6 7 8 9 0 ` - =
+    ' ; , . / spc tab enter Backspace del up down left right))
+  jshft (tap-hold-tap-keys 200 200 j rsft (
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    1 2 3 4 5 6 7 8 9 0 ` - =
+    ' ; , . / spc tab enter Backspace del up down left right))
 )
 
 (deflayer base
