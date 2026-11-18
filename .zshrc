@@ -176,3 +176,19 @@ fi
 export PATH=/home/lork/.opencode/bin:$PATH
 
 export PATH="$HOME/bin:$PATH"
+
+# Claude Code: pick the ANSI theme matching macOS appearance at launch, so its UI
+# renders through Ghostty's yorha / yorha-dark palette (settings.json pins
+# light-ansi; "auto" would switch to Claude's own truecolor themes instead).
+# Skipped when you pass --settings yourself.
+if [[ "$OSTYPE" == darwin* ]]; then
+  claude() {
+    if (( ${@[(I)--settings*]} )); then
+      command claude "$@"
+      return
+    fi
+    local theme=light-ansi
+    [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == Dark ]] && theme=dark-ansi
+    command claude --settings "{\"theme\":\"$theme\"}" "$@"
+  }
+fi
