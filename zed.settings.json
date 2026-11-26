@@ -17,7 +17,11 @@
   },
   "features": {},
   "base_keymap": "VSCode",
-  "theme": "VSCode Dark Polished",
+  "theme": {
+    "mode": "system",
+    "light": "Yorha light",
+    "dark": "Yorha Dark"
+  },
   "vim_mode": true,
   "ui_font_size": 18,
   "buffer_font_size": 18,
