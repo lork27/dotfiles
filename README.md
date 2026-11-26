@@ -83,7 +83,8 @@ All systems receive these links:
 - `.tmux.conf` to `~/.tmux.conf`
 
 Native Linux and macOS also link `zed.settings.json` to
-`~/.config/zed/settings.json`, `neru.toml` to `~/.config/neru/config.toml`, and
+`~/.config/zed/settings.json`, `ghostty.config` to `~/.config/ghostty/config`,
+`neru.toml` to `~/.config/neru/config.toml`, and
 `herdr.toml` to `~/.config/herdr/config.toml`, plus the YoRHa theme files under
 `themes/` (see below).
 

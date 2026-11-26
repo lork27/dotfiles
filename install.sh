@@ -429,6 +429,7 @@ link_dotfiles() {
     info "Skipping native GUI configuration links inside WSL2"
   else
     link_file zed.settings.json .config/zed/settings.json
+    link_file ghostty.config .config/ghostty/config
     link_file neru.toml .config/neru/config.toml
     link_file herdr.toml .config/herdr/config.toml
   fi
