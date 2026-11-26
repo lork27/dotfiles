@@ -1,5 +1,10 @@
 onboarding = false
 
+[theme]
+# Ghostty switches between GitHub Light/Dark Default based on the OS color scheme,
+# so "terminal" makes Herdr's UI follow along.
+name = "terminal"
+
 [keys]
 # Ported from ~/.tmux.conf. tmux used bare h/j/k/l/x/m/n (no prefix), but herdr
 # disables plain-letter direct bindings because they intercept typing.
