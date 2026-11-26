@@ -85,6 +85,12 @@ All systems receive these links:
 Native Linux and macOS also link `zed.settings.json` to
 `~/.config/zed/settings.json`, `neru.toml` to `~/.config/neru/config.toml`, and
 `herdr.toml` to `~/.config/herdr/config.toml`.
+
+Herdr's saved SSH machine list lives in per-client state
+(`~/.local/state/herdr/client/endpoints.json`) and herdr refuses to write it
+through a symlink, so it is not linked from these dotfiles. Instead, the
+catalog is kept as `herdr-endpoints.json` and `./herdr-sync-machines.sh` pushes
+it to every saved machine over SSH (`--pull <ssh-target>` fetches one back).
 macOS additionally links `kanata.kbd` to `~/.config/kanata/kanata.kbd`.
 
 WSL2 skips the Zed, Kanata, Neru, and Herdr links because those applications normally

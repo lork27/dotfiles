@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "ssh": [
+    {
+      "id": "312aff97be2c139f7d00f34f9ffc6211",
+      "label": "lorktron",
+      "target": "lork@lorktron",
+      "session": "default",
+      "enabled": true
+    },
+    {
+      "id": "26a372fafa058f4dc705cc8bf4d82034",
+      "label": "optiplex",
+      "target": "root@optiplex-12500t",
+      "session": "default",
+      "enabled": true
+    },
+    {
+      "id": "d53ccdf9bdca2cebeabf2bb4c284afef",
+      "label": "hermes",
+      "target": "root@hermes",
+      "session": "default",
+      "enabled": true
+    },
+    {
+      "id": "0fb6f0a8e2fa3e7123e18e91ee94d1bc",
+      "label": "trabajo",
+      "target": "lorca@lorcas-macbook-pro-trabajo",
+      "session": "default",
+      "enabled": true
+    }
+  ]
+}
