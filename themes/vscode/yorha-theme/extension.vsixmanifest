@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Language="en-US" Id="yorha-theme" Version="1.0.0" Publisher="yorha"/>
+    <DisplayName>Yorha Theme (NieR)</DisplayName>
+    <Description xml="false">YoRHa light/dark themes ported from ~/.config/zed/themes/yorha.json (same palette as Ghostty yorha / yorha-dark).</Description>
+    <Tags>theme,yorha,nier</Tags>
+    <Categories>Themes</Categories>
+    <GalleryColor>#D1CDB7</GalleryColor>
+    <ThemeColor>#D1CDB7</ThemeColor>
+  </Metadata>
+  <Installation>
+    <InstallationMethod Id="yorha.yorha-theme" Version="1.0.0"/>
+  </Installation>
+  <Properties>
+    <Property Name="Microsoft.VisualStudio.Code.EngineVersion" Value="1.75.0"/>
+    <Property Name="Microsoft.VisualStudio.Code.ExtensionKind" Value="workspace"/>
+  </Properties>
+  <Dependencies/>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true"/>
+    <Asset Type="Microsoft.VisualStudio.Code.Theme" Path="extension/themes/yorha-light-color-theme.json" Addressable="true"/>
+    <Asset Type="Microsoft.VisualStudio.Code.Theme" Path="extension/themes/yorha-dark-color-theme.json" Addressable="true"/>
+  </Assets>
+</PackageManifest>

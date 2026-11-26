@@ -84,7 +84,8 @@ All systems receive these links:
 
 Native Linux and macOS also link `zed.settings.json` to
 `~/.config/zed/settings.json`, `neru.toml` to `~/.config/neru/config.toml`, and
-`herdr.toml` to `~/.config/herdr/config.toml`.
+`herdr.toml` to `~/.config/herdr/config.toml`, plus the YoRHa theme files under
+`themes/` (see below).
 
 Herdr's saved SSH machine list lives in per-client state
 (`~/.local/state/herdr/client/endpoints.json`) and herdr refuses to write it
@@ -101,6 +102,24 @@ Zed, Ghostty, and Kanata themselves are not installed automatically. Neru is:
 on macOS it is installed from the `y3owk1n/tap` Homebrew cask, and on Linux the
 installer downloads the release build from the upstream project after adding
 the required runtime libraries.
+
+## YoRHa Themes
+
+`themes/` holds the NieR: Automata YoRHa palettes shared across this machine's
+apps, so light/dark mode follows the OS appearance everywhere:
+
+- `themes/zed/yorha.json` links to `~/.config/zed/themes/yorha.json` and provides
+  Zed's `Yorha` (light) and `Yorha Dark` themes; `zed.settings.json` selects them
+  with `"theme": {"mode": "system", ...}`.
+- `themes/ghostty/yorha` and `themes/ghostty/yorha-dark` link into
+  `~/.config/ghostty/themes/`; the Ghostty config selects them with
+  `theme = light:yorha,dark:yorha-dark`.
+- `themes/vscode/yorha-*.vsix` is installed as the `yorha.yorha-theme` VS Code
+  extension (only when the `code` CLI is available); VS Code settings select it
+  with `window.autoDetectColorScheme` plus
+  `workbench.preferredLightColorTheme`/`workbench.preferredDarkColorTheme`.
+- `themes/vscode/yorha-theme/` is the extension source; run
+  `themes/vscode/build-vsix.sh` after editing it, then commit the rebuilt vsix.
 
 ## Neru
 

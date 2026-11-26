@@ -1,0 +1,59 @@
+# YoRHa — Nier Automata UI palette (https://metakirby5.github.io/yorha/)
+# Paper #d1cdb7, ink #454138, muted #bab5a1.
+# Contrast vs the paper bg: base slots 0-5 and 8, 15 are >=4.5:1; cyan (6),
+# white (7) and bright 9-14 sit at ~3.6-4.2:1. Bright 9-12 are lighter, more
+# vivid variants of 1-4 (not darker). zed/themes/yorha.json reuses these 16.
+background = d1cdb7
+foreground = 3f3b33
+# Build the 256-color palette (indices 16-255) from the 16 colors below, reversed
+# so higher indices are darker — apps like Claude Code use indices 244/245 for
+# muted text, which the default xterm ramp renders as near-invisible light gray.
+palette-generate = true
+palette-harmonious = true
+cursor-color = 454138
+selection-background = bab5a1
+selection-foreground = 454138
+palette = 0=#3b372f
+palette = 1=#7e4226
+palette = 2=#4c593a
+palette = 3=#5e5020
+palette = 4=#44586a
+palette = 5=#6b4c55
+palette = 6=#4a6560
+palette = 7=#6b6558
+palette = 8=#544f47
+palette = 9=#9c5230
+palette = 10=#55683f
+palette = 11=#75651f
+palette = 12=#4a6478
+palette = 13=#7a545d
+palette = 14=#456259
+palette = 15=#4f4a40
+
+# Grayscale ramp (256-color indices 232-255), explicit so palette-generate won't
+# fill it with the xterm default. Ordered light->dark (harmonious convention): apps
+# like Claude Code use 244/245 for muted text, which lands at ~4.5:1 here.
+palette = 232=#9a9482
+palette = 233=#958f7e
+palette = 234=#908b7a
+palette = 235=#8c8676
+palette = 236=#878171
+palette = 237=#827d6d
+palette = 238=#7d7869
+palette = 239=#787365
+palette = 240=#736e61
+palette = 241=#6f6a5d
+palette = 242=#6a6559
+palette = 243=#656055
+palette = 244=#605c50
+palette = 245=#5b574c
+palette = 246=#565248
+palette = 247=#524e44
+palette = 248=#4d4940
+palette = 249=#48443c
+palette = 250=#433f38
+palette = 251=#3e3b34
+palette = 252=#39362f
+palette = 253=#35312b
+palette = 254=#302d27
+palette = 255=#2b2823

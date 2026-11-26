@@ -438,6 +438,28 @@ link_dotfiles() {
   fi
 }
 
+install_yorha_themes() {
+  # The YoRHa (NieR) palettes used by Zed, Ghostty, and VS Code. The settings
+  # files reference the theme names; these are the palettes themselves.
+  if [[ "$IS_WSL" == true ]]; then
+    info "Skipping YoRHa GUI theme links inside WSL2"
+    return 0
+  fi
+
+  link_file themes/zed/yorha.json .config/zed/themes/yorha.json
+  link_file themes/ghostty/yorha .config/ghostty/themes/yorha
+  link_file themes/ghostty/yorha-dark .config/ghostty/themes/yorha-dark
+
+  if command -v code >/dev/null 2>&1; then
+    info "Installing the YoRHa VS Code theme extension"
+    if ! code --install-extension "$SCRIPT_DIR"/themes/vscode/yorha-*.vsix; then
+      warn "Could not install the YoRHa VS Code theme extension"
+    fi
+  else
+    warn "VS Code CLI not found; skipping the YoRHa VS Code theme extension"
+  fi
+}
+
 set_default_shell() {
   local zsh_path
   zsh_path="$(command -v zsh || true)"
@@ -464,6 +486,7 @@ main() {
   install_nvm
   install_node_and_pnpm
   link_dotfiles
+  install_yorha_themes
   set_default_shell
 
   info "Installation complete"

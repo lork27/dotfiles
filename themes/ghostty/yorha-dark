@@ -1,0 +1,57 @@
+# YoRHa Dark — Nier Automata UI palette, inverted (https://metakirby5.github.io/yorha/)
+# Ink #2b2823 as the page, paper #d1cdb7 as the text; the same earthy hues as
+# the light theme, lifted for a dark bg. Slots 1-6 are >=5:1 and bright 9-14
+# >=6.5:1 vs the bg. Bright black (8) is kept dark (~2.5:1) because apps like
+# Claude Code's dark-ansi use it as a *background* under bright-white text (~4.6:1).
+# zed/themes/yorha.json ("Yorha Dark") reuses these 16.
+background = 2b2823
+foreground = d1cdb7
+# Standard (non-harmonious) ordering for a dark theme: higher indices are lighter.
+palette-generate = true
+palette-harmonious = false
+cursor-color = d1cdb7
+selection-background = 4a463c
+selection-foreground = e8e4cf
+palette = 0=#3a362e
+palette = 1=#c98a6b
+palette = 2=#a3ad84
+palette = 3=#c9b779
+palette = 4=#8fa3b5
+palette = 5=#b496a0
+palette = 6=#8fada6
+palette = 7=#bab5a1
+palette = 8=#6b6558
+palette = 9=#d3a387
+palette = 10=#b7bd9a
+palette = 11=#d3c592
+palette = 12=#a8b6be
+palette = 13=#c4acaf
+palette = 14=#a8bdb3
+palette = 15=#e8e4cf
+
+# Grayscale ramp (232-255), dark->light. 244/245 (muted text in Claude Code etc.)
+# land at ~4.3-4.8:1.
+palette = 232=#35312a
+palette = 233=#3d3931
+palette = 234=#444038
+palette = 235=#4c483f
+palette = 236=#534f46
+palette = 237=#5b574d
+palette = 238=#625e53
+palette = 239=#6a665a
+palette = 240=#716d61
+palette = 241=#797568
+palette = 242=#807c6f
+palette = 243=#888476
+palette = 244=#8f8b7d
+palette = 245=#979384
+palette = 246=#9e9a8b
+palette = 247=#a6a292
+palette = 248=#ada999
+palette = 249=#b5b1a0
+palette = 250=#bcb8a6
+palette = 251=#c4c0ad
+palette = 252=#cbc7b4
+palette = 253=#d3cfbb
+palette = 254=#dad6c2
+palette = 255=#e2dec9
