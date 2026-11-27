@@ -8,6 +8,8 @@ Personal one-shot setup for a clean shell environment.
 - Current Arch Linux and Arch-based distributions
 - WSL2 running one of the supported Linux distributions
 - Current macOS releases
+- The Windows host of a WSL2 setup, configured with `windows\apply.ps1` (see
+  below); `install.sh` itself only runs on Linux and macOS
 
 Other Linux package managers are intentionally unsupported.
 
@@ -121,6 +123,54 @@ apps, so light/dark mode follows the OS appearance everywhere:
   `workbench.preferredLightColorTheme`/`workbench.preferredDarkColorTheme`.
 - `themes/vscode/yorha-theme/` is the extension source; run
   `themes/vscode/build-vsix.sh` after editing it, then commit the rebuilt vsix.
+- `themes/windows-terminal/yorha.schemes.json` holds the `Yorha` (light) and
+  `Yorha Dark` color schemes. `windows\apply.ps1` merges them into Windows Terminal's
+  own `settings.json` and sets `profiles.defaults.colorScheme` to the scheme for this
+  machine. In each scheme the slot on the background side (`black` in Yorha Dark,
+  `white` in Yorha) equals the background, as in Windows Terminal's built-in schemes;
+  ink, paper, hues and selection colors match `themes/ghostty/*`. Two Windows Terminal
+  details: a Microsoft Store install keeps its settings under
+  `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\`
+  (only `Fragments\` under `%LOCALAPPDATA%\Microsoft\Windows Terminal\` is read from
+  there), and the palette is resolved when the process starts, so quit it completely
+  and relaunch after any change. Herdr's `theme = "terminal"` follows this palette when
+  it runs inside Windows Terminal.
+
+## Windows Host
+
+The Windows side of these dotfiles is applied with PowerShell instead of `install.sh`,
+because Windows apps rewrite their own config files (so files are copied, not linked):
+
+```powershell
+powershell -NoProfile -File windows\apply.ps1     # -Light / -Dark override the detected mode
+```
+
+The script is idempotent, stops on the first error, backs a replaced file up to
+`<name>.bak` once (the pre-dotfiles original is never overwritten), and applies:
+
+- `windows\zed.settings.json` to `%APPDATA%\Zed\settings.json`, plus
+  `themes\zed\yorha.json` to `%APPDATA%\Zed\themes\yorha.json`. Zed rewrites its own
+  settings file, so it is replaced wholesale - edit `windows\zed.settings.json` instead
+  of adding settings in `%APPDATA%`.
+- `herdr.toml` (the same file as on macOS/Linux) to
+  `%APPDATA%\herdr\config.toml`
+- `themes\windows-terminal\yorha.schemes.json` merged into Windows Terminal's
+  `settings.json` (Store installs: `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\`).
+  The merge rewrites that file, so comments in it are lost; a file it cannot parse
+  (for example one with `//` comments) is skipped with a message rather than rewritten.
+- `windows\powershell.profile.ps1` to
+  `Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1` (the Windows PowerShell
+  5.1 path, resolved from the user's Documents folder; PowerShell 7 uses
+  `Documents\PowerShell\` and is not covered)
+
+The PowerShell profile is the Windows counterpart of `.zshrc`: it launches Claude Code
+with the matching `light-ansi`/`dark-ansi` theme and picks the palette mode. It does not
+set console colors - those come from the Windows Terminal scheme, since Windows PowerShell
+offers only the 16 named console colors. The mode follows Windows' own app appearance
+setting
+(`HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize\AppsUseLightTheme`,
+0 = dark), mirroring how `.zshrc` reads `AppleInterfaceStyle` on macOS. Precedence is
+`apply.ps1 -Light`/`-Dark`, then `YORHA_MODE=light|dark`, then the Windows setting.
 
 ## Neru
 

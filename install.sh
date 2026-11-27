@@ -442,6 +442,8 @@ link_dotfiles() {
 install_yorha_themes() {
   # The YoRHa (NieR) palettes used by Zed, Ghostty, and VS Code. The settings
   # files reference the theme names; these are the palettes themselves.
+  # On the Windows host these configs are copied instead of linked; see
+  # windows/apply.ps1 and the "Windows Host" section of README.md.
   if [[ "$IS_WSL" == true ]]; then
     info "Skipping YoRHa GUI theme links inside WSL2"
     return 0
