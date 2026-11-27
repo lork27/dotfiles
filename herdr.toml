@@ -1,8 +1,8 @@
 onboarding = false
 
 [theme]
-# Ghostty switches between GitHub Light/Dark Default based on the OS color scheme,
-# so "terminal" makes Herdr's UI follow along.
+# The terminal's own palette carries the YoRHa colors (Ghostty on macOS/Linux,
+# Windows Terminal on Windows), so "terminal" makes Herdr's UI follow along.
 name = "terminal"
 
 [keys]
