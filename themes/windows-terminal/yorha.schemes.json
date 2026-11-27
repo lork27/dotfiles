@@ -1,0 +1,52 @@
+{
+  "schemes": [
+    {
+      "name": "Yorha Dark",
+      "background": "#2b2823",
+      "foreground": "#d1cdb7",
+      "cursorColor": "#d1cdb7",
+      "selectionBackground": "#4a463c",
+      "selectionForeground": "#e8e4cf",
+      "black": "#2b2823",
+      "red": "#c98a6b",
+      "green": "#a3ad84",
+      "yellow": "#c9b779",
+      "blue": "#8fa3b5",
+      "purple": "#b496a0",
+      "cyan": "#8fada6",
+      "white": "#bab5a1",
+      "brightBlack": "#6b6558",
+      "brightRed": "#d3a387",
+      "brightGreen": "#b7bd9a",
+      "brightYellow": "#d3c592",
+      "brightBlue": "#a8b6be",
+      "brightPurple": "#c4acaf",
+      "brightCyan": "#a8bdb3",
+      "brightWhite": "#e8e4cf"
+    },
+    {
+      "name": "Yorha",
+      "background": "#d1cdb7",
+      "foreground": "#3f3b33",
+      "cursorColor": "#454138",
+      "selectionBackground": "#bab5a1",
+      "selectionForeground": "#454138",
+      "black": "#3b372f",
+      "red": "#7e4226",
+      "green": "#4c593a",
+      "yellow": "#5e5020",
+      "blue": "#44586a",
+      "purple": "#6b4c55",
+      "cyan": "#4a6560",
+      "white": "#d1cdb7",
+      "brightBlack": "#544f47",
+      "brightRed": "#9c5230",
+      "brightGreen": "#55683f",
+      "brightYellow": "#75651f",
+      "brightBlue": "#4a6478",
+      "brightPurple": "#7a545d",
+      "brightCyan": "#456259",
+      "brightWhite": "#e8e4cf"
+    }
+  ]
+}
